@@ -10,15 +10,14 @@ const infoSchema = mongoose.Schema({
   },
   progress: {
     type: String,
-    enum: ["in progress", "finished"], // enum is used to specify the possible values for the field
-    default: "in progress",
+    enum: ["In progress", "Completed"], // enum is used to specify the possible values for the field
+    default: "In progress",
   },
 
-  date: {
-    type: String,
-    enum: ["in progress", "finished"], 
-    default: "in progress",
-  },
+	date: {
+		type: String,
+		default: Date.now
+	}
 });
 
 const infoModel = new mongoose.model("Todoinfo", infoSchema);
