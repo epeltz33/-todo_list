@@ -28,7 +28,7 @@ router.get("/:id/delete", async (req, res) => {
 
 router.get("/:id/finish", async (req, res) => {
   const todoDelete = await Todoinfo.findByIdAndUpdate(req.params.id, {
-    progress: "finished", // update the progress field to finished
+    progress: "Completed", // update the progress field to finished
   });
 
   res.redirect("/");

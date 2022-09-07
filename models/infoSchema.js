@@ -22,4 +22,4 @@ const infoSchema = mongoose.Schema({
 
 const infoModel = new mongoose.model("Todoinfo", infoSchema);
 
-module.exports = infoModel;
+module.exports = infoModel ;
