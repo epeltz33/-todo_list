@@ -1,74 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Todo App</title>
 </head>
+
 <body>
-<section class = "vh-100" style="background-color: #eee;">
- <div class = "container py-5 h-100">
-	<div class = "row d-flex justify-content-center align-items-center h-100">
-		<div class = "col col-lg-12 col-xl-11">
-		 <div class = "card rounded-3">
-			 <div class = "card-body p-4">
+	<section class="vh-100" style="background-color: #eee;">
+		<div class="container py-5 h-100">
+			<div class="row d-flex justify-content-center align-items-center h-100">
+				<div class="col col-lg-12 col-xl-11">
+					<div class="card rounded-3">
+						<div class="card-body p-4">
 
-			 <h4 class = "text-center my-3 pb-3 text-primary">Todo App</h4>
-			 <form class = "row row-cols-lg-auto g-3 justify-content-center align-items-center" action = "/" method = "POST">
-				 <div class = "col-12">
-				 <div class="form-outline">
-					 <input type="text" id="form1" class="form-control" name = "description" />
-					 <label class="form-label" for="form1">Add a new task! </label>
-					 </div>
-					 </div>
-				 <div class = "col-12">
-				 <button type="submit" class="btn btn-primary mb-4">Save changes</button>
-				 </div>
+							<h4 class="text-center my-3 pb-3 text-primary">Todo App</h4>
+							<form class="row row-cols-lg-auto g-3 justify-content-center
+									align-items-center" action="/" method="POST">
+								<div class="col-12">
+									<div class="form-outline">
+										<input type="text" id="form1" class="form-control" name="description" />
+										<label class="form-label" for="form1">Add a new task! </label>
+									</div>
+								</div>
+								<div class="col-12">
+									<button type="submit" class="btn btn-primary mb-4">Save changes</button>
+								</div>
 
-				 </form>
-				 <table class="table mb-4">
-				  <thead>
-				   <tr>
-					 <th scope="col">No.</th>
-					 <th scope="col">Todo Item</th>
-					 <th scope="col">Actions</th>
-					 <th scope="col">Status</th>
-				   </tr>
-				  </thead>
-				  <tbody>
-				   <% for(let i = 0; i < allTodos.length; i++) { %>
-				   <tr>
-					<% let z = i+1 %>
-					 <th scope="row"><%= z %></th>
-					 <% if (! allTodos[i].progress.localCompare("Completed")) { %>
-					  <td class="text-decoration-line-through"> <%= allTodos[i].description %> </td>
-					  <%} else {%>
-					  <td> <%= allTodos[i].description %> </td>
-					  <%}%>
-					 <td> <%= allTodos[i].progress %> </td>
-					 <td>
-					  <a href="/<%= allTodos[i]._id %>/delete" class="text-decoration-none"><button type="submit" class="btn btn-danger ms-1">Delete</button> </a>
-					  <% if (! allTodos[i].progress.localCompare("Completed")) { %>
+							</form>
+							<table class="table mb-4">
+								<thead>
+									<tr>
+										<th scope="col">No.</th>
+										<th scope="col">Todo Item</th>
+										<th scope="col">Actions</th>
+										<th scope="col">Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<% for(let i= 0; i <allTodos.length; i++) { %>
+									<tr>
+										<% let z= i+1 %>
+										<th scope="row"><%= z %></th>
+										<% if (! allTodos[i].progress.localCompare(" Completed")) { %>
+										<td class="text-decoration-line-through"> <%=
+																	allTodos[i].description %> </td>
+										<%} else {%>
+										<td> <%= allTodos[i].description %> </td>
+										<%}%>
+																			<td> <%= allTodos[i].progress %> </td>
+										<td>
+											<a href="/<%= allTodos[i]._id %>/delete"
+												class="text-decoration-none"><button type="submit"
+													class="btn btn-danger ms-1">Delete</button> </a>
+											<% if (! allTodos[i].progress.localCompare(" Completed")) {
+																						%>
 
-					  <%] else {%>
-					  <a href="/<%= allTodo[i]._id %>/finish"  class="text-decoration-none"> <button type="submit" class="btn btn-success ms-1 mb-1">Finished</button></a>
-					  <a href="/<%= allTodo[i]._id %>/update"  class="text-decoration-none"><button type="submit" class="btn btn-warning ms-1 mb-1">Update</button></a>
-					  <% } %>
-					 </td>
+											<%] else {%>
+											<a href="/<%= allTodo[i]._id %>/finish" class="text-decoration-none">
+												<button type="submit"
+													class="btn btn-success ms-1 mb-1">Finished</button></a>
+											<a href="/<%= allTodo[i]._id %>/update" class="text-decoration-none"><button
+													type="submit" class="btn btn-warning ms-1 mb-1">Update</button></a>
+											<% } %>
+										</td>
 
-				   </tr>
-				   <% } %>
+									</tr>
+									<% } %>
 
-				  </tbody>
-				 </table>
-	    	</div>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
- </div>
- </div>
-</section>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	</section>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
 
 </body>
+
 </html>
