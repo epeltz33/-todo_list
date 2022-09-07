@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const DB = process.env.DATABASE_URL || 'mongodb://localhost:27017/your_database_name';
+const DB = process.env.DATABASE_URL || 'mongodb://localhost:27017/your-database-name';
 const PORT = process.env.PORT || 3000;
 const morgan = require('morgan'); // log requests to the console
 const chalk = require('chalk');
@@ -9,7 +9,7 @@ const dotenv = require('dotenv');
 const infoModel = require('./models/infoSchema');
 
 
-const mainRouter = require('./routes/mainRouter');
+const mainRouter = require('./controllers/mainRouter');
 dotenv.config();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json() );
