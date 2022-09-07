@@ -1,7 +1,7 @@
 // post to the database using the model
 
 const mongoose = require("mongoose");
-const { stringify } = require("nodemon/lib/utils"); // import the stringify function from the utils module of nodemon for formatting the date
+
 
 const infoSchema = mongoose.Schema({
   description: {

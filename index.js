@@ -6,6 +6,9 @@ const PORT = process.env.PORT || 3000;
 const morgan = require('morgan'); // log requests to the console (express4)
 const chalk = require('chalk');
 const dotenv = require('dotenv');
+const infoModel = require('./models/infoSchema');
+
+
 const mainRouter = require('./routes/mainRouter');
 dotenv.config();
 app.use(express.urlencoded({ extended: true }));
