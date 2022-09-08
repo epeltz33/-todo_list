@@ -1,57 +1,66 @@
 const express = require("express");
+const { route } = require("express/lib/application");
 const router = express.Router();
-const Todoinfo = require("../models/infoSchema"); // import the model
- // GET all todos
- router.get("/:id", async (req, res) => {
-     const todo = await Todoinfo.findOne({ _id: req.params.id });
-     !todo ? res.status(404).send("The todo with the given ID was not found.") : res.send(todo);
- });
- //  GET a single todo
+const mongoose = require("mongoose");
+const Todoinfo = require("../models/infoSchema");
+
 router.get("/", async (req, res) => {
+  // get all todos
   const allTodos = await Todoinfo.find({}).sort("-date");
 
-  res.render("home", { allTodos }); // render the home page and pass the data to it as an object
+  res.render("home", { allTodos });
 });
-// POST a new todo
+
 router.post("/", async (req, res) => {
-  const newTodo = new Todoinfo(req.body);
+  // add a todo
+  const newTodo = new Todoinfo(req.body); // create a new todo
   await newTodo.save((err) => {
+    // save the new todo
     if (err) {
       res.send("Not updated");
     }
   });
-  res.redirect("/");
+  //res.redirect("/");
 });
-// DELETE a todo
+
 router.get("/:id/delete", async (req, res) => {
-  const todoDelete = await Todoinfo.findByIdAndDelete(req.params.id);
+  // delete a todo
+  const todoDelete = await Todoinfo.findByIdAndDelete(req.params.id); // find the todo by id and delete it?
 
-  res.redirect("/");
+  res.redirect("/"); // redirect to home page
 });
-// UPDATE a todo to completed
+
 router.get("/:id/finish", async (req, res) => {
+  // finish a todo (change status to completed)
   const todoDelete = await Todoinfo.findByIdAndUpdate(req.params.id, {
-    progress: "Completed", // update the progress field to finished
+    progress: "Completed",
   });
 
   res.redirect("/");
 });
-// UPDATE a todo to in progress
+// use router.put to update a todo
+//   router.put("/:id/update", async (req, res) => {
+   // update a todo
+//   const todoUpdate = await Todoinfo.findByIdAndUpdate(req.params.id, {
+//     progress: " In Progress",
+//   });
+//    res.redirect("/"); // redirect to home page
+// });
 router.get("/:id/update", async (req, res) => {
-  const updateTodo = await Todoinfo.findById(req.params.id);
+  // update a todo (change status to in progress)
+  const updateTodo = await Todoinfo.findById(req.params.id); // find the todo by id and update it?
 
-  res.render("update", { updateTodo });
+  res.render("update", { updateTodo }); // render the update page with the todo
 });
-// UPDATE a todo to completed
-router.get("/:id/update/final", async (req, res) => {
-  const updateTodo = await Todoinfo.findByIdAndUpdate(req.params.id, {
-    description: req.query.description,
-  });
-   res.render("update", { updateTodo });
 
+router.get("/:id/update/final", async (req, res) => {
+  // update a todo (change status to finished)
+  const updateTodo = await Todoinfo.findByIdAndUpdate(req.params.id, {
+    // find the todo by id and update it?
+    description: req.body.description, // update the description of the todo with the new description
+  });
 
   res.redirect("/");
 });
-
 
 module.exports = router;
