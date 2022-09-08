@@ -47,9 +47,11 @@ router.get("/:id/update/final", async (req, res) => {
   const updateTodo = await Todoinfo.findByIdAndUpdate(req.params.id, {
     description: req.query.description,
   });
+   res.render("update", { updateTodo });
+
 
   res.redirect("/");
 });
- 
+
 
 module.exports = router;
